@@ -1,0 +1,65 @@
+@model Super_Cartes_Infinies.Models.GameConfig
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Supprimer</h1>
+
+<h3>Êtes vous certain de vouloir supprimer cette configuration?</h3>
+<div>
+    <h4>Configuration</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nbr cartes à piger avant de commencer la partie
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nbCardToDraw)
+        </dd>
+        <dt class = "col-sm-2">
+            Qti Mana reçu au début de chaque tour
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.qtManaPerTurn)
+        </dd>
+
+        <dt class="col-sm-2">
+            Argent reçu pour le gagnant
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MonnaieRecueVictoire)
+        </dd>
+        <dt class="col-sm-2">
+            Argent reçu pour le perdant
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MonnaieRecueDefaite)
+        </dd>
+        <dt class="col-sm-2">
+            Argent reçu à la création du compte
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MonnaieRecueCreation)
+
+        <dt class = "col-sm-2">
+            Nombre maximum de decks autorisés
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.maxDecks)
+        </dd>
+        <dt class = "col-sm-2">
+            Nombre maximum de cartes par deck
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.maxCardsPerDeck)
+
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+        <a asp-action="Index">Retour à la liste</a>
+    </form>
+</div>

@@ -1,0 +1,75 @@
+@model IEnumerable<Super_Cartes_Infinies.Models.GameConfig>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Configuration</h1>
+
+<p>
+    <a asp-action="Create">Créer une nouvelle configuration</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nbr cartes à piger avant de commencer la partie
+            </th>
+            <th>
+                Qti Mana reçu au début de chaque tour
+            </th>
+            <th>
+
+                Argent reçu pour le gagnant
+            </th>
+            <th>
+                Argent reçu pour le perdant
+            </th>
+            <th>
+                Argent reçu à la création du compte
+            </th>
+            <th>
+                Nombre maximum de decks
+            </th>
+            <th>
+                Nombre maximum de cartes par deck
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nbCardToDraw)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qtManaPerTurn)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.MonnaieRecueVictoire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonnaieRecueDefaite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonnaieRecueCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maxDecks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maxCardsPerDeck)
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Détails</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,64 @@
+@model Super_Cartes_Infinies.Models.GameConfig
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Créer une configuration</h1>
+
+<h4>Configuration</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nbCardToDraw" class="control-label">Nbr cartes à piger avant de commencer la partie</label>
+                <input asp-for="nbCardToDraw" class="form-control" />
+                <span asp-validation-for="nbCardToDraw" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="qtManaPerTurn" class="control-label">Qti Mana reçu au début de chaque tour</label>
+                <input asp-for="qtManaPerTurn" class="form-control" />
+                <span asp-validation-for="qtManaPerTurn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="MonnaieRecueVictoire" class="control-label">Argent reçu pour le gagnant</label>
+                <input asp-for="MonnaieRecueVictoire" class="form-control" />
+                <span asp-validation-for="MonnaieRecueVictoire" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonnaieRecueDefaite" class="control-label">Argent reçu pour le perdant</label>
+                <input asp-for="MonnaieRecueDefaite" class="form-control" />
+                <span asp-validation-for="MonnaieRecueDefaite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonnaieRecueCreation" class="control-label">Argent reçu à la création du compte</label>
+                <input asp-for="MonnaieRecueCreation" class="form-control" />
+                <span asp-validation-for="MonnaieRecueCreation" class="text-danger"></span>
+
+                <label asp-for="maxDecks" class="control-label">Nombre maximum de decks autorisés</label>
+                <input asp-for="maxDecks" class="form-control" value="5" />
+                <span asp-validation-for="maxDecks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="maxCardsPerDeck" class="control-label">Nombre maximum de cartes par deck</label>
+                <input asp-for="maxCardsPerDeck" class="form-control" value="30" />
+                <span asp-validation-for="maxCardsPerDeck" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

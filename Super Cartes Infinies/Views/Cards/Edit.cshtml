@@ -1,0 +1,99 @@
+﻿@model Super_Cartes_Infinies.Models.Card
+
+@{
+    ViewData["Title"] = "Edit";
+    var raretes = new List<SelectListItem>
+    {
+        new SelectListItem { Value = Raretes.Commune.ToString(), Text = Raretes.Commune.ToString() },
+        new SelectListItem { Value = Raretes.Rare.ToString(), Text = Raretes.Rare.ToString() },
+        new SelectListItem { Value = Raretes.Épique.ToString(), Text = Raretes.Épique.ToString() },
+        new SelectListItem { Value = Raretes.Légendaire.ToString(), Text = Raretes.Légendaire.ToString() }
+    };
+}
+
+<h1>Modifier</h1>
+
+<h4>Cartes Modèle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nom</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Attack" class="control-label">Attaque</label>
+                <input asp-for="Attack" class="form-control" />
+                <span asp-validation-for="Attack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Health" class="control-label">Point de vie</label>
+                <input asp-for="Health" class="form-control" />
+                <span asp-validation-for="Health" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost" class="control-label">Coût</label>
+                <input asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rarete" class="control-label">Rareté</label>
+                <select asp-for="Rarete" class="form-control" asp-items="raretes"></select>
+                <span asp-validation-for="Rarete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label">Url de l'image</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Accepter" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <form asp-action="DeletePower">
+            @foreach(var power in Model.CardPowers)
+            {
+                <li>
+                    @power.Power.Icone @power.Power.Name
+                    @if(@power.Value != null)
+                    {
+                        @power.Value
+                    }
+                    <input type="submit" value="X" class="btn btn-danger" />
+                    <input type="hidden" name="id" value="@power.Id" />
+                    <br/>
+                </li>
+            }
+            
+        </form>
+        <form asp-action="AddPower" method="post">
+            <input type="hidden" name="cardId" value="@ViewBag.CardId" />
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <li>
+                <select id="powerSelect" name="powerId" class="form-control"
+                        asp-items="@ViewBag.Powers">
+                    <option value="">-- Select Power --</option>
+                </select>
+
+                <input min="0" type="number" name="value" />
+                <input type="submit" value="+" class="btn btn-info" />
+            </li>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retour à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,54 @@
+﻿@model Super_Cartes_Infinies.Models.Card
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Détails</h1>
+
+<div>
+    <h4>Carte Modèle</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nom
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Attaque
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Attack)
+        </dd>
+        <dt class = "col-sm-2">
+            Point de vie
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Health)
+        </dd>
+        <dt class = "col-sm-2">
+            Coût
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+        <dt class="col-sm-2">
+            Rareté
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rarete)
+        </dd>
+        <dt class = "col-sm-2">
+            Image
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="@Html.DisplayFor(model => model.ImageUrl)" height="150px"/>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Modifier</a> |
+    <a asp-action="Index">Retour à la liste</a>
+</div>

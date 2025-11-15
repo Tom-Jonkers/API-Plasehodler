@@ -1,0 +1,81 @@
+@model IEnumerable<Super_Cartes_Infinies.Models.Card>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cartes</h1>
+
+<p>
+    <a asp-action="Create">Créer</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nom
+            </th>
+            <th>
+                Attaque
+            </th>
+            <th>
+                Point de vie
+            </th>
+            <th>
+                Coût
+            </th>
+            <th>
+                Pouvoirs
+            </th>
+            <th>
+                Rareté
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Health)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+                <td>
+                @foreach (var cardPower in item.CardPowers)
+                {
+                    
+                        @Html.DisplayFor(modelItem => cardPower.Power.Icone)
+                        @Html.DisplayFor(modelItem => cardPower.Power.Name)
+                        @if (cardPower.Value != null)
+                        @Html.DisplayFor(modelItem => cardPower.Value)
+                        <br />
+                    
+                }
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rarete)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" height="150px" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Détails</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a> |
+                <a asp-action="AddToStartingCards" asp-route-id="@item.Id">Ajouter aux cartes de départ</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
